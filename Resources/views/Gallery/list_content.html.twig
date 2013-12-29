@@ -1,0 +1,15 @@
+<div id="galleries">
+{% for gallery in galleries %}
+    <div class="gallery">
+        <h2 class="name"><a href="{{ url('fsi_gallery_page', {'id': gallery.id}) }}">{{ gallery.name }}</a></h2>
+        <p class="description">{{ gallery.description }}</p>
+        {% for photo in gallery.photos|slice(0, preview_photos_count) %}
+        <img class="thumbnail" src="{{ fsi_file_path(photo.photo, 'uploaded')|imagine_filter('fsi_photo_thumbnail') }}"/>
+        {% endfor %}
+    </div>
+{% endfor %}
+<div class="pagination">
+    {{ datasource_pagination_widget(datasource, {max_pages: 10, active_class: 'active', disabled_class: 'disabled' }) }}
+</div>
+</div>
+

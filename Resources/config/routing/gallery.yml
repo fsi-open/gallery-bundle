@@ -1,0 +1,7 @@
+fsi_gallery_list:
+    path: /galleries/{page}
+    defaults: { _controller: fsi_gallery.controller.gallery:listAction, page: 0 }
+
+fsi_gallery_page:
+    path: /gallery/{id}
+    defaults: { _controller: fsi_gallery.controller.gallery:galleryAction}

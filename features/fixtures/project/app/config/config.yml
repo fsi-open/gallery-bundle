@@ -1,0 +1,31 @@
+framework:
+    secret:          this_is_secret
+    translator:      { fallback: en }
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    templating:      { engines: ['twig'] }
+    form:            true
+    profiler:        { only_exceptions: false }
+    test:            ~
+    session:
+        storage_id:     session.storage.filesystem
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        user:     admin
+        charset:  UTF8
+        path: %kernel.root_dir%/data.sqlite
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+fsi_doctrine_extensions:
+    orm:
+        default:
+            uploadable: true
+
+fsi_gallery:
+    db_driver: orm
+    gallery_class: FSi\FixturesBundle\Entity\Gallery
+    photo_class: FSi\FixturesBundle\Entity\Photo
+
