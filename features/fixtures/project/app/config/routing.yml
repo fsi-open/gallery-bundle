@@ -1,0 +1,7 @@
+gallery:
+    resource: "@FSiGalleryBundle/Resources/config/routing/gallery.yml"
+    prefix: /
+
+_imagine:
+    resource: .
+    type:     imagine

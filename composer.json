@@ -1,0 +1,48 @@
+{
+    "name": "fsi/gallery-bundle",
+    "type": "symfony-bundle",
+    "description": "Provides photo galleries for you Symfony2 application.",
+    "keywords": ["gallery", "photo", "symfony2", "bundle", "fsi"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Norbert Orzechowicz",
+            "email": "norbert@fsi.pl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.3",
+        "symfony/twig-bundle": "~2.3",
+        "doctrine/doctrine-bundle": "1.2.*@dev",
+        "fsi/doctrine-extensions-bundle": "1.0.*",
+        "fsi/datasource-bundle": "1.2.*",
+        "liip/imagine-bundle": "v0.17.0"
+    },
+    "require-dev": {
+        "doctrine/orm": "~2.3",
+        "fzaninotto/faker": "v1.3.0",
+        "phpspec/phpspec": "2.0.*@dev",
+        "behat/behat": "*@stable",
+        "behat/symfony2-extension": "*@stable",
+        "behat/mink-extension": "*",
+        "behat/mink-browserkit-driver": "*",
+        "behat/mink-selenium2-driver": "*",
+        "sensiolabs/behat-page-object-extension": "1.0.*@dev",
+        "bossa/phpspec2-expect": "dev-master"
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "autoload": {
+        "psr-0": {
+            "FSi\\Bundle\\GalleryBundle\\": ""
+        }
+    },
+    "target-dir" : "FSi/Bundle/GalleryBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}

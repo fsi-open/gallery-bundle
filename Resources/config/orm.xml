@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="fsi_gallery.gallery_data_source_builder.class">FSi\Bundle\GalleryBundle\Doctrine\GalleryDataSourceBuilder</parameter>
+        <parameter key="fsi_gallery.gallery_manager.class">FSi\Bundle\GalleryBundle\Doctrine\GalleryManager</parameter>
+    </parameters>
+    <services>
+        <service id="fsi_gallery.gallery.entity_repository"
+                 factory-service="doctrine.orm.default_entity_manager"
+                 factory-method="getRepository"
+                 class="Doctrine\ORM\EntityRepository">
+            <argument>%fsi_gallery.gallery_class%</argument>
+        </service>
+
+        <service id="fsi_gallery.gallery_data_source_builder" class="%fsi_gallery.gallery_data_source_builder.class%">
+            <argument type="service" id="datasource.factory" />
+            <argument type="service" id="fsi_gallery.gallery.entity_repository" />
+        </service>
+
+        <service id="fsi_gallery.gallery_manager" class="%fsi_gallery.gallery_manager.class%">
+            <argument type="service" id="fsi_gallery.gallery.entity_repository" />
+        </service>
+    </services>
+</container>
