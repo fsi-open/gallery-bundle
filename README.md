@@ -1,6 +1,6 @@
 # FSi Gallery Bundle
 
-Provides photo galleries for you Symfony2 application. 
+Provides photo galleries for your Symfony2 application. 
 
 Build Status:  
 [![Build Status](https://travis-ci.org/fsi-open/gallery-bundle.png?branch=master)](https://travis-ci.org/fsi-open/gallery-bundle) - Master
@@ -15,4 +15,4 @@ Documentation:
 - [Installation](Resources/doc/installation.md)
 - [Templating](Resources/doc/templating.md)
 - [Configuration](Resources/doc/configuration.md)
-- [Image filters](Resources/docs/imagine_filters.md)
+- [Image filters](Resources/doc/imagine_filters.md)
