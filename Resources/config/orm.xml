@@ -16,11 +16,6 @@
             <argument>%fsi_gallery.gallery_class%</argument>
         </service>
 
-        <service id="fsi_gallery.gallery_data_source_builder" class="%fsi_gallery.gallery_data_source_builder.class%">
-            <argument type="service" id="datasource.factory" />
-            <argument type="service" id="fsi_gallery.gallery.entity_repository" />
-        </service>
-
         <service id="fsi_gallery.gallery_manager" class="%fsi_gallery.gallery_manager.class%">
             <argument type="service" id="fsi_gallery.gallery.entity_repository" />
         </service>

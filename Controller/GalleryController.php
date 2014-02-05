@@ -9,8 +9,8 @@
 
 namespace FSi\Bundle\GalleryBundle\Controller;
 
-use FSi\Bundle\GalleryBundle\Model\GalleryDataSourceBuilderInterface;
 use FSi\Bundle\GalleryBundle\Model\GalleryManagerInterface;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 
 class GalleryController
@@ -19,11 +19,6 @@ class GalleryController
      * @var \FSi\Bundle\GalleryBundle\Model\GalleryManagerInterface
      */
     private $galleryManager;
-
-    /**
-     * @var GalleryDataSourceBuilderInterface
-     */
-    private $galleryDataSourceBuilder;
 
     /**
      * @var int
@@ -42,20 +37,17 @@ class GalleryController
 
     /**
      * @param EngineInterface $templating
-     * @param GalleryDataSourceBuilderInterface $galleryDataSourceBuilder
      * @param GalleryManagerInterface $galleryManager
      * @param $previewPhotosCount
      * @param $galleriesPerPage
      */
     function __construct(
         EngineInterface $templating,
-        GalleryDataSourceBuilderInterface $galleryDataSourceBuilder,
         GalleryManagerInterface $galleryManager,
         $previewPhotosCount,
         $galleriesPerPage
     ) {
         $this->templating = $templating;
-        $this->galleryDataSourceBuilder = $galleryDataSourceBuilder;
         $this->galleryManager = $galleryManager;
         $this->previewPhotosCount = $previewPhotosCount;
         $this->galleriesPerPage = $galleriesPerPage;
@@ -67,17 +59,15 @@ class GalleryController
      */
     public function listAction($page)
     {
-        /* @var \FSi\Component\DataSource\DataSource $dataSource */
-        $dataSource = $this->galleryDataSourceBuilder->buildDataSource();
+        $pagerfanta = new Pagerfanta($this->galleryManager->createPagerfantaAdapter());
 
-        $dataSource->setMaxResults($this->galleriesPerPage);
-        $dataSource->setFirstResult($page * $this->galleriesPerPage);
+        $pagerfanta->setMaxPerPage($this->galleriesPerPage);
+        $pagerfanta->setCurrentPage($page);
 
         return $this->templating->renderResponse(
             'FSiGalleryBundle:Gallery:list.html.twig',
             array(
-                'datasource' => $dataSource->createView(),
-                'galleries' => $dataSource->getResult(),
+                'galleries' => $pagerfanta,
                 'preview_photos_count' => $this->previewPhotosCount
             )
         );

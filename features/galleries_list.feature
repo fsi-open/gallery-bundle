@@ -24,11 +24,22 @@ Feature: Galleries list
     When I open "Galleries" page
     Then I should see first 2 visible galleries at page
     And I should see pagination with following buttons
-      | Button   | Disabled | Active |
-      | first    | true     | false  |
-      | previous | true     | false  |
-      | 1        | false    | true   |
-      | 2        | false    | false  |
-      | 3        | false    | false  |
-      | next     | false    | false  |
-      | last     | false    | false  |
+      | Button   | Disabled | Current |
+      | Previous | true     | false   |
+      | 1        | false    | true    |
+      | 2        | false    | false   |
+      | 3        | false    | false   |
+      | Next     | false    | false   |
+
+  Scenario: Access second page
+    Given there are 5 visible galleries
+    When I open "Galleries" page
+    And I press pagination "Next" button
+    Then I should see 2 visible galleries at page
+    And I should see pagination with following buttons
+      | Button   | Disabled | Current |
+      | Previous | false    | false   |
+      | 1        | false    | false   |
+      | 2        | false    | true    |
+      | 3        | false    | false   |
+      | Next     | false    | false   |

@@ -23,7 +23,7 @@ public function registerBundles()
         new Liip\ImagineBundle\LiipImagineBundle(),
         new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
         new FSi\Bundle\DoctrineExtensionsBundle\FSiDoctrineExtensionsBundle(),
-        new FSi\Bundle\DataSourceBundle\DataSourceBundle(),
+        new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
         // FSiGalleryBundle
         new FSi\Bundle\GalleryBundle\FSiGalleryBundle(),

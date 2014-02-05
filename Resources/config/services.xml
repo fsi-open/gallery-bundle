@@ -15,7 +15,6 @@
         <!-- Controllers -->
         <service id="fsi_gallery.controller.gallery" class="%fsi_gallery.controller.gallery.class%">
             <argument type="service" id="templating" />
-            <argument type="service" id="fsi_gallery.gallery_data_source_builder" />
             <argument type="service" id="fsi_gallery.gallery_manager" />
             <argument>%fsi_gallery.preview_photos_count%</argument>
             <argument>%fsi_gallery.galleries_per_page%</argument>

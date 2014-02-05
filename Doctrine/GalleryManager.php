@@ -12,6 +12,7 @@ namespace FSi\Bundle\GalleryBundle\Doctrine;
 use Doctrine\ORM\EntityRepository;
 use FSi\Bundle\GalleryBundle\Model\GalleryInterface;
 use FSi\Bundle\GalleryBundle\Model\GalleryManagerInterface;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
 
 class GalleryManager implements GalleryManagerInterface
 {
@@ -35,5 +36,16 @@ class GalleryManager implements GalleryManagerInterface
     public function findGallery($id)
     {
         return $this->entityRepository->findOneBy(array('id' => $id));
+    }
+
+    /**
+     * @return \Pagerfanta\Adapter\AdapterInterface
+     */
+    public function createPagerfantaAdapter()
+    {
+        $queryBuilder = $this->entityRepository->createQueryBuilder('g')
+            ->where('g.visible = 1');
+
+        return new DoctrineORMAdapter($queryBuilder);
     }
 }
