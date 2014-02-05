@@ -61,7 +61,7 @@ class Galleries extends Page
      */
     public function hasPagination()
     {
-        return $this->has('css', 'div.pagination > ul');
+        return $this->has('css', 'div.pagination > nav');
     }
 
     /**
@@ -70,7 +70,15 @@ class Galleries extends Page
      */
     public function hasPaginationButton($text)
     {
-        return $this->hasLink($text);
+        return $this->hasLink($text) || $this->has('css', sprintf('span:contains("%s")', $text));
+    }
+
+    /**
+     * @param $text
+     */
+    public function pressPaginationButton($text)
+    {
+        return $this->clickLink($text);
     }
 
     /**
@@ -79,16 +87,25 @@ class Galleries extends Page
      */
     public function isButtonDisabled($text)
     {
-        return $this->findLink($text)->getParent()->hasClass('disabled');
+        $button = $this->findLink($text);
+        if (!isset($button)) {
+            $button = $this->find('css', sprintf('span:contains("%s")', $text));
+        }
+        return $button->hasClass('disabled');
     }
 
     /**
      * @param $text
      * @return Boolean
      */
-    public function isButtonActive($text)
+    public function isButtonCurrent($text)
     {
-        return $this->findLink($text)->getParent()->hasClass('active');
+        $button = $this->findLink($text);
+        if (!isset($button)) {
+            $button = $this->find('css', sprintf('span:contains("%s")', $text));
+        }
+
+        return $button->hasClass('current');
     }
 
     /**

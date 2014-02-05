@@ -14,7 +14,7 @@ class AppKernel extends Kernel
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new FSi\Bundle\DoctrineExtensionsBundle\FSiDoctrineExtensionsBundle(),
-            new FSi\Bundle\DataSourceBundle\DataSourceBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new FSi\Bundle\GalleryBundle\FSiGalleryBundle(),
             new FSi\FixturesBundle\FSiFixturesBundle(),
         );

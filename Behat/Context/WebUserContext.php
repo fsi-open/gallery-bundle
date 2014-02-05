@@ -108,6 +108,7 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
 
     /**
      * @Then /^I should see first (\d+) visible galleries at page$/
+     * @Then /^I should see (\d+) visible galleries at page$/
      */
     public function iShouldSeeFirstVisibleGalleriesAtPage($galleriesCount)
     {
@@ -126,8 +127,8 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
             expect($page->hasPaginationButton($buttonData['Button']))->toBe(true);
             expect($page->isButtonDisabled($buttonData['Button']))
                 ->toBe($buttonData['Disabled'] == 'true');
-            expect($page->isButtonActive($buttonData['Button']))
-                ->toBe($buttonData['Active'] == 'true');
+            expect($page->isButtonCurrent($buttonData['Button']))
+                ->toBe($buttonData['Current'] == 'true');
         }
     }
 
@@ -162,5 +163,13 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
     {
         $thumbnails = $this->getPage('Gallery')->getThumbnails();
         expect(count($thumbnails))->toBe((int) $thumbnailsCount);
+    }
+
+    /**
+     * @Given /^I press pagination "([^"]*)" button$/
+     */
+    public function iPressPaginationButton($button)
+    {
+        $this->getPage('Galleries')->pressPaginationButton($button);
     }
 }

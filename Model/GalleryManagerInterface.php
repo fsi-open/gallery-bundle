@@ -16,4 +16,9 @@ interface GalleryManagerInterface
      * @return GalleryInterface
      */
     public function findGallery($id);
+
+    /**
+     * @return \Pagerfanta\Adapter\AdapterInterface
+     */
+    public function createPagerfantaAdapter();
 }

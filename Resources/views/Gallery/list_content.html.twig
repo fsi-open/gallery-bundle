@@ -1,5 +1,5 @@
 <div id="galleries">
-{% for gallery in galleries %}
+{% for gallery in galleries.currentPageResults %}
     <div class="gallery">
         <h2 class="name"><a href="{{ url('fsi_gallery_page', {'id': gallery.id}) }}">{{ gallery.name }}</a></h2>
         <p class="description">{{ gallery.description }}</p>
@@ -9,7 +9,7 @@
     </div>
 {% endfor %}
 <div class="pagination">
-    {{ datasource_pagination_widget(datasource, {max_pages: 10, active_class: 'active', disabled_class: 'disabled' }) }}
+    {{ pagerfanta(galleries) }}
 </div>
 </div>
 
