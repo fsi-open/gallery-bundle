@@ -9,6 +9,8 @@
 
 namespace FSi\Bundle\GalleryBundle\Model;
 
+use Doctrine\Common\Collections\Collection;
+
 interface GalleryInterface
 {
     /**
@@ -25,6 +27,21 @@ interface GalleryInterface
      * @return boolean
      */
     public function isVisible();
+
+    /**
+     * @param PhotoInterface $photo
+     */
+    public function addPhoto(PhotoInterface $photo);
+
+    /**
+     * @param PhotoInterface $photo
+     */
+    public function removePhoto(PhotoInterface $photo);
+
+    /**
+     * @param Collection $photos
+     */
+    public function setPhotos(Collection $photos);
 
     /**
      * @return PhotoInterface[]
