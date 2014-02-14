@@ -96,6 +96,14 @@ class Gallery implements GalleryInterface
     }
 
     /**
+     * @param PhotoInterface $photo
+     */
+    public function removePhoto(PhotoInterface $photo)
+    {
+        $this->photos->removeElement($photo);
+    }
+
+    /**
      * @param \Doctrine\Common\Collections\Collection $photos
      */
     public function setPhotos(Collection $photos)
