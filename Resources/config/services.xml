@@ -6,9 +6,6 @@
 
     <parameters>
         <parameter key="fsi_gallery.controller.gallery.class">FSi\Bundle\GalleryBundle\Controller\GalleryController</parameter>
-        <parameter key="fsi_gallery.orm.listeners.resolve_target_entity.class">Doctrine\ORM\Tools\ResolveTargetEntityListener</parameter>
-        <parameter key="fsi_gallery.gallery_model_interface">FSi\Bundle\GalleryBundle\Model\GalleryInterface</parameter>
-        <parameter key="fsi_gallery.photo_model_interface">FSi\Bundle\GalleryBundle\Model\PhotoInterface</parameter>
     </parameters>
 
     <services>
@@ -20,20 +17,5 @@
             <argument>%fsi_gallery.galleries_per_page%</argument>
         </service>
 
-        <!-- listeners -->
-        <service id="fsi_gallery.orm.listeners.resolve_target_entity" class="%fsi_gallery.orm.listeners.resolve_target_entity.class%" public="false">
-            <call method="addResolveTargetEntity">
-                <argument>%fsi_gallery.gallery_model_interface%</argument>
-                <argument>%fsi_gallery.gallery_class%</argument>
-                <argument type="collection"></argument>
-            </call>
-            <call method="addResolveTargetEntity">
-                <argument>%fsi_gallery.photo_model_interface%</argument>
-                <argument>%fsi_gallery.photo_class%</argument>
-                <argument type="collection"></argument>
-            </call>
-            <tag name="doctrine.event_listener" event="loadClassMetadata" />
-        </service>
     </services>
-
 </container>
