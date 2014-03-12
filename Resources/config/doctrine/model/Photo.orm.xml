@@ -9,7 +9,7 @@
         <field type="string" name="photoFileKey" column="photo_file_key" nullable="true">
             <fsi:uploadable targetField="photo"/>
         </field>
-        <many-to-one field="gallery" target-entity="FSi\Bundle\GalleryBundle\Model\GalleryInterface" inversed-by="galleries">
+        <many-to-one field="gallery" target-entity="FSi\Bundle\GalleryBundle\Model\GalleryInterface" inversed-by="photos">
             <join-column name="gallery_id" referenced-column-name="id" />
         </many-to-one>
     </mapped-superclass>
