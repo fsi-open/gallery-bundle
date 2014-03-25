@@ -28,4 +28,3 @@ fsi_gallery:
     db_driver: orm
     gallery_class: FSi\FixturesBundle\Entity\Gallery
     photo_class: FSi\FixturesBundle\Entity\Photo
-
