@@ -7,7 +7,6 @@ Add to composer.json
 ```
 "require": {
     "doctrine/doctrine-bundle": "dev-master",
-    "doctrine/doctrine-cache-bundle": "dev-master",
     "fsi/gallery-bundle": "dev-master"
 }
 ```
