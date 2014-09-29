@@ -14,7 +14,7 @@
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.3",
         "symfony/twig-bundle": "~2.3",
-        "fsi/doctrine-extensions-bundle": "1.0.*",
+        "fsi/doctrine-extensions-bundle": "~1.0",
         "liip/imagine-bundle": "0.*",
         "white-october/pagerfanta-bundle": "1.0.*"
     },
