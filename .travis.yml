@@ -15,13 +15,33 @@ before_install:
     - sudo apt-get update > /dev/null
 
 install:
+    - echo '' > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
+    - echo 'date.timezone = "Europe/Warsaw"' >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+    - echo "127.0.0.1 galleries-bundle.dev" | sudo tee -a /etc/hosts
+    - wget http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar
     - sudo apt-get install -y --force-yes php5-sqlite
 
+before_script:
+    - nohup php -S content-block.dev:8080 -t features/fixtures/project/web > server.log 2>&1 &
+    
+    # Run selenium
+    - sh -e /etc/init.d/xvfb start
+    - export DISPLAY=:99.0
+    - java -jar selenium-server-standalone-2.44.0.jar > selenium.log 2>&1 &
+    - sleep 5
+    - mkdir -p features/fixtures/project/web/bundles/fsifixture
+    - cp -r Resources/public/* features/fixtures/project/web/bundles/fsifixture
+
 script:
+    - composer require symfony/symfony:${SYMFONY_VERSION} -n --prefer-source
     - composer self-update
     - composer install -n --prefer-source
     - ./bin/phpspec run -f pretty
     - ./bin/behat --no-snippets --no-paths --verbose --format=progress
+    
+after_failure:
+    - cat server.log
+    - cat selenium.log
 
 notifications:
   irc: "irc.freenode.org#fsi-open"

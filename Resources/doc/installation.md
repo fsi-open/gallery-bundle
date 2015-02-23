@@ -2,7 +2,7 @@
 
 ## 1. Download Gallery Bundle
 
-Add to composer.json
+Add the following lines to composer.json:
 
 ```
 "require": {
@@ -41,9 +41,8 @@ fsi_gallery:
     resource: "@FSiGalleryBundle/Resources/config/routing/gallery.yml"
     prefix: /
 
-_imagine:
-    resource: .
-    type:     imagine
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
 ```
 
 ## 4. Create entities
@@ -95,7 +94,7 @@ class Photo extends BasePhoto
 ```
 # app/config/config.yml
 
-fsi_doctrine_extensions: # You need to enable uploadable doctrine extension
+fsi_doctrine_extensions: # You need to enable the uploadable doctrine extension
     orm:
         default:
             uploadable: true
@@ -106,6 +105,4 @@ fsi_gallery:
     photo_class: FSi\FixturesBundle\Entity\Photo
 ```
 
-You are now ready to read about [templating](templating.md) gallery
-
-
+You are now ready to read about [overwriting bundle's templates](templating.md).

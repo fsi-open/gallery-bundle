@@ -9,9 +9,9 @@
 
 namespace FSi\Bundle\GalleryBundle\Behat\Context;
 
-use Behat\Behat\Context\BehatContext;
+use Behat\Symfony2Extension\Context\KernelDictionary;
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Tools\SchemaTool;
 use Faker\Factory;
@@ -19,24 +19,10 @@ use Faker\ORM\Doctrine\Populator;
 use FSi\FixturesBundle\Entity\Gallery;
 use FSi\FixturesBundle\Entity\Photo;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\HttpKernel\KernelInterface;
 
-class DataContext extends BehatContext implements KernelAwareInterface
+class DataContext extends PageObjectContext
 {
-    /**
-     * @var KernelInterface
-     */
-    private $kernel;
-
-    /**
-     * Sets Kernel instance.
-     *
-     * @param KernelInterface $kernel HttpKernel instance
-     */
-    public function setKernel(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
-    }
+    use KernelDictionary;
 
     /**
      * @BeforeScenario
@@ -69,25 +55,29 @@ class DataContext extends BehatContext implements KernelAwareInterface
         $path = realpath($this->kernel->getRootDir() . '/../web');
 
         if (file_exists($path)) {
-            self::deleteDir($path);
+            self::deleteDir($path, true);
         }
     }
 
     /**
      * @param $dir
      */
-    public static function deleteDir($dir) {
+    public static function deleteDir($dir, $onlyContents = false) {
         $iterator = new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS);
         $files = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST);
         foreach ($files as $file) {
+            if (strpos($file->getPathname(), 'app_test.php') !== false) {
+                continue;
+            }
             if ($file->isDir()) {
                 rmdir($file->getPathname());
             } else {
                 unlink($file->getPathname());
             }
         }
-
-        rmdir($dir);
+        if ($onlyContents === false) {
+            rmdir($dir);
+        }
     }
 
     /**

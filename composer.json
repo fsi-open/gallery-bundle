@@ -15,7 +15,7 @@
         "symfony/framework-bundle": "~2.3",
         "symfony/twig-bundle": "~2.3",
         "fsi/doctrine-extensions-bundle": "~1.0",
-        "liip/imagine-bundle": "0.*",
+        "liip/imagine-bundle": "1.*",
         "white-october/pagerfanta-bundle": "1.0.*"
     },
     "require-dev": {
@@ -23,12 +23,13 @@
         "doctrine/doctrine-bundle": "dev-master",
         "fzaninotto/faker": "v1.3.0",
         "phpspec/phpspec": "2.0.*@dev",
-        "behat/behat": "*@stable",
-        "behat/symfony2-extension": "*@stable",
+        "behat/behat": "3.*@stable",
+        "behat/symfony2-extension": "*",
         "behat/mink-extension": "*",
         "behat/mink-browserkit-driver": "*",
         "behat/mink-selenium2-driver": "*",
-        "sensiolabs/behat-page-object-extension": "1.0.*@dev",
+        "sensiolabs/behat-page-object-extension": "2.*@dev",
+        "phpspec/phpspec": "~2.0",
         "bossa/phpspec2-expect": "dev-master"
     },
     "config": {

@@ -4,10 +4,16 @@ framework:
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
     templating:      { engines: ['twig'] }
     form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
     profiler:        { only_exceptions: false }
     test:            ~
     session:
         storage_id:     session.storage.filesystem
+                    
+parameters:
+    locale: en
+    secret: galleryTest1234
 
 doctrine:
     dbal:
@@ -28,3 +34,10 @@ fsi_gallery:
     db_driver: orm
     gallery_class: FSi\FixturesBundle\Entity\Gallery
     photo_class: FSi\FixturesBundle\Entity\Photo
+    
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                cache_prefix: uploaded/cache
+                

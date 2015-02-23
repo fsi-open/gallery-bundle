@@ -16,3 +16,7 @@ Documentation:
 - [Templating](Resources/doc/templating.md)
 - [Configuration](Resources/doc/configuration.md)
 - [Image filters](Resources/doc/imagine_filters.md)
+
+Versions:
+
+- 1.0.2 upgraded the LiipImagineBundle to 1.*.
