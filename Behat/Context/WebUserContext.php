@@ -115,8 +115,7 @@ class WebUserContext extends PageObjectContext
      */
     public function eachGalleryThumbnailShouldHavePxWidthAndPxHeight($width, $height)
     {
-        $page = $this->getPage('Galleries');
-        $photoPreview = $page->getFirstGalleryPhotoThumbnail();
+        $photoPreview = $this->getPage('Galleries')->getFirstGalleryPhotoThumbnail();
         $imgSrc = $photoPreview->getAttribute('src');
         $size = getimagesize($imgSrc);
         expect($size[0])->toBe((int) $width);

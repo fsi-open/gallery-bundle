@@ -27,9 +27,7 @@ Provides photo galleries for your Symfony2 application.
 In order to run some tests, you need to run this command from the bundle's directory:
 
 ```php
-
-php -S content-block.dev:8080 -t features/fixtures/project/web/
-
+php -S gallery-bundle.dev:8080 -t features/fixtures/project/web/
 ```
 
 to get the PHP in-built server running.
