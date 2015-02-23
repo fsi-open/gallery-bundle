@@ -20,11 +20,6 @@ use FSi\Bundle\GalleryBundle\Behat\Context\DataContext;
 class WebUserContext extends PageObjectContext
 {
     use KernelDictionary;
-    
-    /**
-     * @var KernelInterface
-     */
-    private $kernel;
 
     /** 
      * @var DataContext 
