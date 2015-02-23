@@ -11,7 +11,6 @@ namespace FSi\Bundle\GalleryBundle\Behat\Context;
 
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Symfony2Extension\Context\KernelDictionary;
 use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 
@@ -19,12 +18,17 @@ use FSi\Bundle\GalleryBundle\Behat\Context\DataContext;
 
 class WebUserContext extends PageObjectContext
 {
-    use KernelDictionary;
+    private $kernel;
 
     /** 
      * @var DataContext 
      */
     private $dataContext;
+    
+    public function __construct(KernelInterface $kernel)
+    {
+        $this->kernel = $kernel;
+    }
 
     /** @BeforeScenario */
     public function gatherContexts(BeforeScenarioScope $scope)
@@ -34,16 +38,6 @@ class WebUserContext extends PageObjectContext
         $this->dataContext = $environment->getContext(
             'FSi\Bundle\GalleryBundle\Behat\Context\DataContext'
         );
-    }
-    
-    /**
-     * Sets Kernel instance.
-     *
-     * @param KernelInterface $kernel HttpKernel instance
-     */
-    public function setKernel(KernelInterface $kernel)
-    {
-        $this->kernel = $kernel;
     }
 
     /**

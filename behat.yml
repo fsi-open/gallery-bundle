@@ -2,8 +2,10 @@ default: &default
     suites:
         gallery_bundle_suite:
             contexts:
-                - FSi\Bundle\GalleryBundle\Behat\Context\DataContext
-                - FSi\Bundle\GalleryBundle\Behat\Context\WebUserContext
+                - FSi\Bundle\GalleryBundle\Behat\Context\DataContext:
+                    kernel: "@kernel"
+                - FSi\Bundle\GalleryBundle\Behat\Context\WebUserContext:
+                    kernel: "@kernel"
     extensions:
         Behat\Symfony2Extension:
             kernel:

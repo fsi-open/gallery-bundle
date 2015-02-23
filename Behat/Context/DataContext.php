@@ -9,8 +9,6 @@
 
 namespace FSi\Bundle\GalleryBundle\Behat\Context;
 
-use Behat\Symfony2Extension\Context\KernelDictionary;
-use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
 use Behat\Gherkin\Node\TableNode;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Tools\SchemaTool;
@@ -18,11 +16,18 @@ use Faker\Factory;
 use Faker\ORM\Doctrine\Populator;
 use FSi\FixturesBundle\Entity\Gallery;
 use FSi\FixturesBundle\Entity\Photo;
+use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DataContext extends PageObjectContext
 {
-    use KernelDictionary;
+    private $kernel;
+
+    public function __construct(KernelInterface $kernel)
+    {
+        $this->kernel = $kernel;
+    }
 
     /**
      * @BeforeScenario
