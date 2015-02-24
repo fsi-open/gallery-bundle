@@ -12,7 +12,7 @@ default: &default
                 bootstrap: features/fixtures/project/app/bootstrap.php
                 path: features/fixtures/project/app/AppKernel.php
         Behat\MinkExtension:
-            base_url: http://gallery-bundle.dev:8080/app_test.php/
+            base_url: http://127:0:0:1:8080/app_test.php/
             javascript_session: javascript
             sessions:
                 default:
@@ -23,8 +23,3 @@ default: &default
             namespaces:
                 page:
                     - FSi\Bundle\GalleryBundle\Behat\Context\Page
-travis:
-    <<: *default
-    extensions:
-      Behat\MinkExtension:
-        base_url: http://gallery-bundle.dev:8080/app_test.php/
