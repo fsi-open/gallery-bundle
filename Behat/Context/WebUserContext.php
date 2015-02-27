@@ -9,26 +9,35 @@
 
 namespace FSi\Bundle\GalleryBundle\Behat\Context;
 
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
-use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class WebUserContext extends PageObjectContext implements KernelAwareInterface
+use FSi\Bundle\GalleryBundle\Behat\Context\DataContext;
+
+class WebUserContext extends PageObjectContext
 {
-    /**
-     * @var KernelInterface
-     */
     private $kernel;
 
-    /**
-     * Sets Kernel instance.
-     *
-     * @param KernelInterface $kernel HttpKernel instance
+    /** 
+     * @var DataContext 
      */
-    public function setKernel(KernelInterface $kernel)
+    private $dataContext;
+    
+    public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
+    }
+
+    /** @BeforeScenario */
+    public function gatherContexts(BeforeScenarioScope $scope)
+    {
+        $environment = $scope->getEnvironment();
+
+        $this->dataContext = $environment->getContext(
+            'FSi\Bundle\GalleryBundle\Behat\Context\DataContext'
+        );
     }
 
     /**
@@ -68,7 +77,7 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
      */
     public function iAmOnTheWithNamePage($pageName, $name)
     {
-        $gallery = $this->getMainContext()->getSubcontext('data')->findGalleryByName($name);
+        $gallery = $this->dataContext->findGalleryByName($name);
         $this->getPage($pageName)->open(array(
             'id' => $gallery->getId()
         ));
@@ -95,13 +104,9 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
      */
     public function eachGalleryThumbnailShouldHavePxWidthAndPxHeight($width, $height)
     {
-        $session = $this->getPage('Galleries')->getSession();
         $photoPreview = $this->getPage('Galleries')->getFirstGalleryPhotoThumbnail();
         $imgSrc = $photoPreview->getAttribute('src');
-        $session->visit($imgSrc);
-        $imgPath = $this->kernel->getRootDir() . '/../web' . $imgSrc;
-        expect(file_exists($imgPath))->toBe(true);
-        $size = getimagesize($imgPath);
+        $size = getimagesize($imgSrc);
         expect($size[0])->toBe((int) $width);
         expect($size[1])->toBe((int) $height);
     }

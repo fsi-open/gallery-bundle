@@ -4,7 +4,7 @@
     {% for photo in gallery.photos %}
         {% spaceless %}
         <a href="{{ fsi_file_path(photo.photo, 'uploaded')|imagine_filter('fsi_photo') }}" target="_blank">
-            <img class="thumbnail" src="{{ fsi_file_path(photo.photo, 'uploaded')|imagine_filter('fsi_photo_thumbnail') }}"/>
+            <img class="thumbnail" src="{{ fsi_file_path(photo.photo)|imagine_filter('fsi_photo_thumbnail') }}"/>
         </a>
         {% endspaceless %}
     {% endfor %}

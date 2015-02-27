@@ -1,10 +1,11 @@
 # Image filters feature
 
-This bundle use greate [LiipImagineBundle](https://github.com/liip/LiipImagineBundle) to
+This bundle uses [LiipImagineBundle](https://github.com/liip/LiipImagineBundle) to
 resize gallery photos.
-By default there are 2 filters registered and used
 
-``fsi_photo`` with following configuration
+By default there are 2 filters registered and used:
+
+``fsi_photo``:
 
 ```php
 array(
@@ -26,7 +27,7 @@ array(
 ),
 ```
 
-``fsi_photo_thumbnail`` with following configuration
+``fsi_photo_thumbnail``:
 
 ```php
 array(
@@ -48,8 +49,9 @@ array(
 ),
 ```
 
-Configuration of both filters can be overwritten in application config
-Example:
+Configuration of both filters can be overwritten in the application's config, 
+for example:
+
 ```
 # app/config/config.yml
 

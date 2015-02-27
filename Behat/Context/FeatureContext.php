@@ -9,11 +9,12 @@
 
 namespace FSi\Bundle\GalleryBundle\Behat\Context;
 
-use Behat\Behat\Context\BehatContext;
+use Behat\MinkExtension\Context\MinkContext;
+use Behat\Symfony2Extension\Context\KernelDictionary;
 
-class FeatureContext extends BehatContext
+class FeatureContext extends MinkContext
 {
-    public function __construct(array $parameters)
+    public function __construct()
     {
         $this->useContext('data', new DataContext());
         $this->useContext('web-user', new WebUserContext());

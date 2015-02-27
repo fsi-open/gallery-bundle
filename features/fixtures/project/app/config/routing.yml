@@ -2,6 +2,5 @@ gallery:
     resource: "@FSiGalleryBundle/Resources/config/routing/gallery.yml"
     prefix: /
 
-_imagine:
-    resource: .
-    type:     imagine
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
